@@ -1,16 +1,10 @@
-#
-FROM python:3.10.8
-
-#
+FROM python:3.9-slim
 WORKDIR /app
 
-#
-COPY ./requirements.txt /app/requirements.txt
+COPY ./requeriments.txt .
 
-#
-RUN pip install --no-cache-dir --upgrade -r /app/requirements.txt
-
-#
-COPY . /app
-
-
+RUN apt-get update     && apt-get install gcc -y     && apt-get clean
+RUN pip install --upgrade pip
+RUN pip install -r ./requeriments.txt
+COPY . /app/
+CMD ["uvicorn","app:app","--host","0.0.0.0","--port","8000"]

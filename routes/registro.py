@@ -19,7 +19,7 @@ async def find_all_register():
     try:
         return registrosEntity(db.registro.find())
     except:
-        error()
+        return "No hay registros"
 
 @registro.post('/registro', tags=["Registros"])
 async def create_register(reg: Registro):
