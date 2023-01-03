@@ -34,62 +34,62 @@ async def create_register(reg: Registro):
 @registro.get('/registros/{id}', tags=["Registros"])
 async def find_register(id: str):
     try:
-        return registroEntity(db.local.registro.find_one({"_id": ObjectId(id)}))
+        return registroEntity(db.registro.find_one({"_id": ObjectId(id)}))
     except:
         error()
 
 @registro.put('/registros/{id}', tags=["Registros"])
 async def update_register(id: str, reg: Registro):
     try:
-        db.local.registro.find_one_and_update({"_id": ObjectId(id)}, {"$set": dict(reg)})
-        return registroEntity(db.local.registro.find_one({"_id": ObjectId(id)}))
+        db.registro.find_one_and_update({"_id": ObjectId(id)}, {"$set": dict(reg)})
+        return registroEntity(db.registro.find_one({"_id": ObjectId(id)}))
     except:
         error()
 
 @registro.put('/registros/hora_entrada_definido/{id}', tags=["Editar horas"])
 async def update_register_hora_entrada_definido(id: str, hora: int):
     try:
-        db.local.registro.find_one_and_update({"_id": ObjectId(id)}, {"$set": {"hora_entrada_definido":hora}})
-        return registroEntity(db.local.registro.find_one({"_id": ObjectId(id)}))
+        db.registro.find_one_and_update({"_id": ObjectId(id)}, {"$set": {"hora_entrada_definido":hora}})
+        return registroEntity(db.registro.find_one({"_id": ObjectId(id)}))
     except:
         error()
 
 @registro.put('/registros/hora_salida_definido/{id}', tags=["Editar horas"])
 async def update_register_hora_salida_definido(id: str, hora: int):
     try:
-        db.local.registro.find_one_and_update({"_id": ObjectId(id)}, {"$set": {"hora_salida_definido":hora}})
-        return registroEntity(db.local.registro.find_one({"_id": ObjectId(id)}))
+        db.registro.find_one_and_update({"_id": ObjectId(id)}, {"$set": {"hora_salida_definido":hora}})
+        return registroEntity(db.registro.find_one({"_id": ObjectId(id)}))
     except:
         error()
 
 @registro.put('/registros/hora_entrada_real/{id}', tags=["Editar horas"])
 async def update_register_hora_entrada_real(id: str, hora: int):
     try:
-        db.local.registro.find_one_and_update({"_id": ObjectId(id)}, {"$set": {"hora_entrada_real":hora}})
-        return registroEntity(db.local.registro.find_one({"_id": ObjectId(id)}))
+        db.registro.find_one_and_update({"_id": ObjectId(id)}, {"$set": {"hora_entrada_real":hora}})
+        return registroEntity(db.registro.find_one({"_id": ObjectId(id)}))
     except:
         error()
 
 @registro.put('/registros/"hora_salida_real/{id}', tags=["Editar horas"])
 async def update_register_hora_salida_real(id: str, hora: int):
     try:
-        db.local.registro.find_one_and_update({"_id": ObjectId(id)}, {"$set": {"hora_salida_real":hora}})
-        return registroEntity(db.local.registro.find_one({"_id": ObjectId(id)}))
+        db.registro.find_one_and_update({"_id": ObjectId(id)}, {"$set": {"hora_salida_real":hora}})
+        return registroEntity(db.registro.find_one({"_id": ObjectId(id)}))
     except:
         error()
 
 @registro.put('/registros/"total_de_horas/{id}', tags=["Editar horas"])
 async def update_register_total_de_horas(id: str, hora: int):
     try:
-        db.local.registro.find_one_and_update({"_id": ObjectId(id)}, {"$set": {"total_de_horas":hora}})
-        return registroEntity(db.local.registro.find_one({"_id": ObjectId(id)}))
+        db.registro.find_one_and_update({"_id": ObjectId(id)}, {"$set": {"total_de_horas":hora}})
+        return registroEntity(db.registro.find_one({"_id": ObjectId(id)}))
     except:
         error()
     
 @registro.delete('/registros/{id}', tags=["Registros"])
 async def delete_register(id: str):
     try:
-        registroEntity(db.local.registro.find_one_and_delete({"_id": ObjectId(id)}))
+        registroEntity(db.registro.find_one_and_delete({"_id": ObjectId(id)}))
         return Response(status_code=HTTP_204_NO_CONTENT)
     except:
         error()
